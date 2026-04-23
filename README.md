@@ -53,7 +53,7 @@ npm run typecheck
 ```
 src/
 ├── api/                    # API clients
-│   └── base44Client.js
+│   └── Client.js
 ├── components/
 │   ├── Canvas/             # Canvas UI (toolbar, sidebar, flow canvas)
 │   │   ├── CanvasToolbar.jsx
