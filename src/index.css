@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 10%;
+    --primary: 234 100% 61%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 30% 10%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 15% 50%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 30% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 234 100% 61%;
+    --radius: 0.5rem;
+
+    /* Node colors */
+    --node-start-fill: #E6FFF3;
+    --node-start-accent: #29C08A;
+    --node-task-fill: #E8F3FF;
+    --node-task-accent: #2B9CFF;
+    --node-approval-fill: #FFF8E1;
+    --node-approval-accent: #FFB020;
+    --node-automated-fill: #F3EDFF;
+    --node-automated-accent: #7A5CFF;
+    --node-end-fill: #E8EEF5;
+    --node-end-accent: #5E6B7A;
+
+    /* Canvas */
+    --canvas-bg: #F6F8FA;
+    --canvas-grid: #E9EEF6;
+
+    /* Font */
+    --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .dark {
+    --background: 220 30% 8%;
+    --foreground: 220 14% 96%;
+    --card: 220 30% 10%;
+    --card-foreground: 220 14% 96%;
+    --popover: 220 30% 10%;
+    --popover-foreground: 220 14% 96%;
+    --primary: 234 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 25% 16%;
+    --secondary-foreground: 220 14% 96%;
+    --muted: 220 25% 16%;
+    --muted-foreground: 220 15% 60%;
+    --accent: 220 25% 16%;
+    --accent-foreground: 220 14% 96%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 25% 18%;
+    --input: 220 25% 18%;
+    --ring: 234 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-family: var(--font-inter);
+  }
+}
+
+/* React Flow overrides */
+.react-flow__renderer {
+  background: var(--canvas-bg);
+}
+.react-flow__background {
+  background: var(--canvas-bg);
+}
+.react-flow__edge-path {
+  stroke: #94a3b8;
+  stroke-width: 2;
+}
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #3949FF;
+}
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid #94a3b8;
+  border-radius: 50%;
+  transition: border-color 0.15s;
+}
+.react-flow__handle:hover {
+  border-color: #3949FF;
+  background: #EEF1FF;
+}
+.react-flow__controls {
+  box-shadow: 0 2px 8px rgba(12,24,40,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid hsl(var(--border));
+}
+.react-flow__controls-button {
+  background: white;
+  border: none;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+.react-flow__controls-button:hover {
+  background: hsl(var(--secondary));
+}
+.react-flow__minimap {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid hsl(var(--border));
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Drag ghost styles */
+.drag-ghost {
+  opacity: 0.7;
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(57, 73, 255, 0.2);
+}
+
+/* Node selection ring */
+.selected-node {
+  outline: 2px solid #3949FF !important;
+  outline-offset: 2px;
+}
+
+/* Execution log animation */
+@keyframes slideInLog {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.log-item-enter {
+  animation: slideInLog 0.25s ease forwards;
+}
+
+/* Panel slide */
+@keyframes slideInRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+.panel-slide {
+  animation: slideInRight 0.2s ease forwards;
+}
